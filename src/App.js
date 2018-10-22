@@ -1,9 +1,8 @@
 import React from 'react'
-import logo from './logo.svg'
 
 import {
   Layout,
-  Header,
+  Logo,
   PageTitle,
   Product,
   CreateAccount,
@@ -18,11 +17,9 @@ import { Desktop, Mobile } from './utils/media'
 
 const App = () => (
   <Layout>
-    <Header
-      linkUrl="/"
-      linkTitle="Scentbird"
-      imageSrc={logo}
-    />
+    <Layout.Header>
+      <Logo />
+    </Layout.Header>
     <Layout.ColumnLeft>
       <Mobile>
         <PageTitle

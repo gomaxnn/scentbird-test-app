@@ -7,7 +7,7 @@ import PageTitle from './PageTitle'
 import BuyButton from './BuyButton'
 import Product from './Product'
 import Layout from './Layout'
-import Header from './Header'
+import Logo from './Logo'
 
 export {
   SubscriptionType,
@@ -19,5 +19,5 @@ export {
   BuyButton,
   Product,
   Layout,
-  Header,
+  Logo,
 }
