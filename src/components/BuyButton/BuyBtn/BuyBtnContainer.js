@@ -2,11 +2,11 @@ import { connect } from 'react-redux'
 import { compose, withHandlers } from 'recompose'
 import validate from 'validate.js'
 
-import * as accountActions from '../../../redux/ducks/account'
-import * as typeActions from '../../../redux/ducks/subscriptionType'
-import * as shippingActions from '../../../redux/ducks/shippingAddress'
-import * as billingActions from '../../../redux/ducks/billingAddress'
-import * as cardActions from '../../../redux/ducks/creditCard'
+import { accountSetErrors } from '../../../redux/ducks/account'
+import { typeSetErrors } from '../../../redux/ducks/subscriptionType'
+import { shippingSetErrors } from '../../../redux/ducks/shippingAddress'
+import { billingSetErrors } from '../../../redux/ducks/billingAddress'
+import { cardSetErrors } from '../../../redux/ducks/creditCard'
 
 import {
   accountValidators,
@@ -19,65 +19,57 @@ import {
 const mapStateToProps = state => ({ ...state })
 
 const mapDispatchToProps = {
-  ...accountActions,
-  ...typeActions,
-  ...shippingActions,
-  ...billingActions,
-  ...cardActions,
+  accountSetErrors,
+  typeSetErrors,
+  shippingSetErrors,
+  billingSetErrors,
+  cardSetErrors,
 }
 
-const setError = (errors, handler) => {
-  handler(errors ? errors[0] : null)
+const setErrors = (errors, handler) => {
+  const errorsObj = Object.keys(errors).reduce((acc, key) => {
+    acc[key] = errors[key][0]
+    return acc
+  }, {})
+
+  handler(errorsObj)
+}
+
+const onClickHandler = props => event => {
+  // account
+  const accountErrors = validate(props.account, accountValidators) || {}
+  setErrors(accountErrors, props.accountSetErrors)
+
+  // subscription type
+  const typeErrors = validate(props.subscriptionType, subscriptionTypeValidators) || {}
+  setErrors(typeErrors, props.typeSetErrors)
+
+  // shipping address
+  const shippingErrors = validate(props.shippingAddress, shippingAddressValidators) || {}
+  setErrors(shippingErrors, props.shippingSetErrors)
+
+  // billing address
+  const billingErrors = validate(props.billingAddress, billingAddressValidators) || {}
+  setErrors(billingErrors, props.billingSetErrors)
+
+  // credit card
+  const cardErrors = validate(props.creditCard, creditCardValidators) || {}
+  setErrors(cardErrors, props.cardSetErrors)
+
+  const noErrors = (
+    Object.keys(accountErrors).length === 0 &&
+    Object.keys(typeErrors).length === 0 &&
+    Object.keys(shippingErrors).length === 0 &&
+    Object.keys(billingErrors).length === 0 &&
+    Object.keys(cardErrors).length === 0
+  )
+
+  noErrors && alert('Congrats! All the fields are valid.')
 }
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   withHandlers({
-    onClick: props => event => {
-      // account
-      const accountErrors = validate(props.account, accountValidators) || {}
-      setError(accountErrors.email, props.setEmailError)
-      setError(accountErrors.password, props.setPasswordError)
-
-      // subscription type
-      const typeErrors = validate(props.subscriptionType, subscriptionTypeValidators) || {}
-      setError(typeErrors.type, props.setTypeError)
-
-      // shipping address
-      const shippingErrors = validate(props.shippingAddress, shippingAddressValidators) || {}
-      setError(shippingErrors.firstName, props.setFirstNameError)
-      setError(shippingErrors.lastName, props.setLastNameError)
-      setError(shippingErrors.streetAddress, props.setStreetAddressError)
-      setError(shippingErrors.zipCode, props.setZipCodeError)
-      setError(shippingErrors.city, props.setCityError)
-      setError(shippingErrors.state, props.setStateError)
-      setError(shippingErrors.country, props.setCountryError)
-      setError(shippingErrors.phone, props.setPhoneError)
-
-      // billing address
-      const billingErrors = validate(props.billingAddress, billingAddressValidators) || {}
-      setError(billingErrors.streetAddress, props.setStreetAddressErr)
-      setError(billingErrors.zipCode, props.setZipCodeErr)
-      setError(billingErrors.city, props.setCityErr)
-      setError(billingErrors.state, props.setStateErr)
-      setError(billingErrors.country, props.setCountryErr)
-
-      // credit card
-      const cardErrors = validate(props.creditCard, creditCardValidators) || {}
-      setError(cardErrors.cardNumber, props.setCardNumberError)
-      setError(cardErrors.expMonth, props.setCardMonthError)
-      setError(cardErrors.expYear, props.setCardYearError)
-      setError(cardErrors.secureCode, props.setCardCodeError)
-      
-      const noErrors = (
-        Object.keys(accountErrors).length === 0 &&
-        Object.keys(typeErrors).length === 0 &&
-        Object.keys(shippingErrors).length === 0 &&
-        Object.keys(billingErrors).length === 0 &&
-        Object.keys(cardErrors).length === 0
-      )
-      
-      noErrors && alert('Congrats! All the fields are valid.')
-    },
+    onClick: onClickHandler,
   })
 )

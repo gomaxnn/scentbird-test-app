@@ -9,6 +9,8 @@ const SET_CARD_MONTH_ERR = '@@creditCard/SET_CARD_MONTH_ERR'
 const SET_CARD_YEAR_ERR = '@@creditCard/SET_CARD_YEAR_ERR'
 const SET_CARD_CODE_ERR = '@@creditCard/SET_CARD_CODE_ERR'
 
+const SET_ERRORS = '@@creditCard/SET_ERRORS'
+
 const initialState = {
   cardNumber: '',
   expMonth: '',
@@ -88,6 +90,16 @@ export default (state = initialState, action = {}) => {
           secureCode: action.error,
         },
       }
+    
+    /* Errors */
+    case SET_ERRORS:
+      return {
+        ...state,
+        errors: {
+          ...initialState.errors,
+          ...action.errors,
+        },
+      }
 
     default:
       return state
@@ -138,4 +150,10 @@ export const setCardCode = data => ({
 export const setCardCodeError = error => ({
   type: SET_CARD_CODE_ERR,
   error,
+})
+
+/* Errors */
+export const cardSetErrors = errors => ({
+  type: SET_ERRORS,
+  errors,
 })

@@ -14,6 +14,7 @@ const SET_COUNTRY_ERR = '@@billingAddress/SET_COUNTRY_ERR'
 
 const SET_VISIBILITY = '@@billingAddress/SET_VISIBILITY'
 const RESET = '@@billingAddress/RESET'
+const SET_ERRORS = '@@billingAddress/SET_ERRORS'
 
 const initialState = {
   visible: false,
@@ -132,6 +133,16 @@ export default (state = initialState, action = {}) => {
     /* Reset to initial */
     case RESET:
       return initialState
+    
+    /* Errors */
+    case SET_ERRORS:
+      return {
+        ...state,
+        errors: {
+          ...initialState.errors,
+          ...action.errors,
+        },
+      }
 
     default:
       return state
@@ -210,4 +221,10 @@ export const setCountryErr = error => ({
 /* Reset to initial */
 export const reset = () => ({
   type: RESET,
+})
+
+/* Errors */
+export const billingSetErrors = errors => ({
+  type: SET_ERRORS,
+  errors,
 })

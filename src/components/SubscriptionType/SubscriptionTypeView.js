@@ -21,6 +21,7 @@ const SectionBlock = styled(Section.Block)`
   margin-right: auto;
   ${media.desktop`
     max-width: 480px;
+    margin: 0 auto;
   `}
 `
 

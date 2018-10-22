@@ -5,6 +5,8 @@ const SET_EMAIL_ERR = '@@account/SET_EMAIL_ERR'
 const SET_PASSWORD = '@@account/SET_PASSWORD'
 const SET_PASSWORD_ERR = '@@account/SET_PASSWORD_ERR'
 
+const SET_ERRORS = '@account/SET_ERRORS'
+
 const initialState = {
   email: '',
   password: '',
@@ -23,7 +25,7 @@ export default (state = initialState, action = {}) => {
         ...state,
         email: action.data,
       }
-    
+
     case SET_EMAIL_ERR:
       return {
         ...state,
@@ -32,20 +34,30 @@ export default (state = initialState, action = {}) => {
           email: action.error,
         },
       }
-    
+
     // Password
     case SET_PASSWORD:
       return {
         ...state,
         password: action.data,
       }
-    
+
     case SET_PASSWORD_ERR:
       return {
         ...state,
         errors: {
           ...state.errors,
           password: action.error,
+        },
+      }
+
+    // Errors
+    case SET_ERRORS:
+      return {
+        ...state,
+        errors: {
+          ...initialState.errors,
+          ...action.errors,
         },
       }
 
@@ -73,4 +85,9 @@ export const setPassword = data => ({
 export const setPasswordError = error => ({
   type: SET_PASSWORD_ERR,
   error,
+})
+
+export const accountSetErrors = errors => ({
+  type: SET_ERRORS,
+  errors,
 })

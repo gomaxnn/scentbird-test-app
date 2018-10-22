@@ -1,10 +1,12 @@
 // Actions
 const SWITCH = '@@subscriptionType/SWITCH'
-const ERROR = '@@subscriptionType/ERROR'
+const SET_ERRORS = '@@subscriptionType/SET_ERRORS'
 
 const initialState = {
   type: null,
-  error: null,
+  errors: {
+    type: null,
+  },
 }
 
 // Reducer
@@ -16,10 +18,13 @@ export default (state = initialState, action = {}) => {
         type: action.data,
       }
 
-    case ERROR:
+    case SET_ERRORS:
       return {
         ...state,
-        error: action.error,
+        errors: {
+          ...initialState.errors,
+          ...action.errors,
+        },
       }
 
     default:
@@ -33,7 +38,7 @@ export const switchType = data => ({
   data,
 })
 
-export const setTypeError = error => ({
-  type: ERROR,
-  error,
+export const typeSetErrors = (errors = {}) => ({
+  type: SET_ERRORS,
+  errors,
 })

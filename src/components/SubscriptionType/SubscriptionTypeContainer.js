@@ -3,7 +3,7 @@ import { compose, withHandlers } from 'recompose'
 
 import {
   switchType,
-  setTypeError,
+  typeSetErrors,
 } from '../../redux/ducks/subscriptionType'
 
 const TYPE_WOMEN = 'women'
@@ -12,13 +12,13 @@ const TYPE_MEN = 'men'
 const mapStateToProps = ({ subscriptionType }) => ({
   forWomen: (subscriptionType.type === TYPE_WOMEN),
   forMen: (subscriptionType.type === TYPE_MEN),
-  error: subscriptionType.error,
+  error: subscriptionType.errors.type,
 })
 
 const mapDispatchToProps = {
   switchToWomen() {},
   switchToMen() {},
-  setTypeError,
+  typeSetErrors,
   switchType,
 }
 
@@ -27,11 +27,11 @@ export default compose(
   withHandlers({
     switchToWomen: props => event => {
       props.switchType(TYPE_WOMEN)
-      props.setTypeError(null)
+      props.typeSetErrors()
     },
     switchToMen: props => event => {
       props.switchType(TYPE_MEN)
-      props.setTypeError(null)
+      props.typeSetErrors()
     },
   })
 )

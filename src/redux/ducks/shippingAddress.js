@@ -19,6 +19,8 @@ const SET_CITY_ERR = '@@shippingAddress/SET_CITY_ERR'
 const SET_COUNTRY_ERR = '@@shippingAddress/SET_COUNTRY_ERR'
 const SET_PHONE_ERR = '@@shippingAddress/SET_PHONE_ERR'
 
+const SET_ERRORS = '@@shippingAddress/SET_ERRORS'
+
 const initialState = {
   firstName: '',
   lastName: '',
@@ -187,6 +189,16 @@ export default (state = initialState, action = {}) => {
         myBillingAddress: action.data,
       }
 
+    /* Errors */
+    case SET_ERRORS:
+      return {
+        ...state,
+        errors: {
+          ...initialState.errors,
+          ...action.errors,
+        },
+      }
+
     default:
       return state
   }
@@ -292,4 +304,10 @@ export const setPhoneError = error => ({
 export const setMyBillingAddress = data => ({
   type: SET_MY_BILLING_ADDR,
   data,
+})
+
+/* Errors */
+export const shippingSetErrors = errors => ({
+  type: SET_ERRORS,
+  errors,
 })
