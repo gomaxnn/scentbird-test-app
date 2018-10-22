@@ -22,19 +22,13 @@ const App = () => (
     </Layout.Header>
     <Layout.ColumnLeft>
       <Mobile>
-        <PageTitle
-          title="Monthly Subscription"
-          text="Billed monthly. Renews automatically, cancel any time. Free shipping."
-        />
+        <PageTitle />
       </Mobile>
       <Product />
     </Layout.ColumnLeft>
     <Layout.ColumnRight>
       <Desktop>
-        <PageTitle
-          title="Month-to-month Subscription"
-          text="Billed monthly. Renews automatically, cancel any time. Free shipping."
-        />
+        <PageTitle />
       </Desktop>
       <CreateAccount />
       <SubscriptionType />
