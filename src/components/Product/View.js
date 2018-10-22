@@ -12,6 +12,7 @@ import Coupon from './Coupon'
 const Container = styled.div`
   margin-bottom: 9.25vw;
   @media (min-width: 576px) {
+    margin-bottom: 25px;
     padding: 0 30px;
     border: 1px solid #E6E6E6;
   }

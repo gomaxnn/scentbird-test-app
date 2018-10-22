@@ -1,16 +1,17 @@
 import React from 'react'
 
 import {
-  Layout,
-  Logo,
-  PageTitle,
-  Product,
-  CreateAccount,
   SubscriptionType,
   ShippingAddress,
   BillingAddress,
+  CreateAccount,
+  ShippingInfo,
   CreditCard,
+  PageTitle,
   BuyButton,
+  Product,
+  Layout,
+  Logo,
 } from './components'
 
 import { Desktop, Mobile } from './utils/media'
@@ -25,6 +26,9 @@ const App = () => (
         <PageTitle />
       </Mobile>
       <Product />
+      <Desktop>
+        <ShippingInfo />
+      </Desktop>
     </Layout.ColumnLeft>
     <Layout.ColumnRight>
       <Desktop>
@@ -36,6 +40,9 @@ const App = () => (
       <BillingAddress />
       <CreditCard />
       <BuyButton />
+      <Mobile>
+        <ShippingInfo />
+      </Mobile>
     </Layout.ColumnRight>
   </Layout>
 )
