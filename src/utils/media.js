@@ -3,7 +3,7 @@ import { css } from 'styled-components'
 import Responsive from 'react-responsive'
 
 export const sizes = {
-  desktop: 576,
+  desktop: 768,
 }
 
 export const Desktop = props => (

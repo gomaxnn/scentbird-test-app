@@ -4,14 +4,16 @@ import styled from 'styled-components'
 import { applyStyleModifiers } from 'styled-components-modifiers'
 import classNames from 'classnames'
 
+import media from '../../utils/media'
+
 const FieldError = styled.div`
   padding-top: 1.5vw;
   font-size: 3.75vw;
   color: #F00;
-  @media (min-width: 576px) {
+  ${media.desktop`
     padding-top: 5px;
     font-size: 12px;
-  }
+  `}
 `
 
 // Option
@@ -139,7 +141,7 @@ const StyledSelect = styled(Select)`
     right: 4.75vw;
     top: 8vw;
   }
-  @media (min-width: 576px) {
+  ${media.desktop`
     select {
       padding: 15px;
       font-size: 18px;
@@ -148,7 +150,7 @@ const StyledSelect = styled(Select)`
       right: 15px;
       top: 25px;
     }
-  }
+  `}
   ${applyStyleModifiers(modifierConfig)};
 `
 

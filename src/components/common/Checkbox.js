@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import media from '../../utils/media'
+
 const Checkbox = ({
   children,
   className,
@@ -71,7 +73,7 @@ const StyledCheckbox = styled(Checkbox)`
       transform: rotate(-45deg);
     }
   }
-  @media (min-width: 576px) {
+  ${media.desktop`
     padding-left: 24px;
     line-height: normal;
     font-size: 14px;
@@ -86,7 +88,7 @@ const StyledCheckbox = styled(Checkbox)`
         border-width: 3px;
       }
     }
-  }
+  `}
 `
 
 export default StyledCheckbox

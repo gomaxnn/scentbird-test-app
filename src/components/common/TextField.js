@@ -5,14 +5,16 @@ import { applyStyleModifiers } from 'styled-components-modifiers'
 import InputMask from 'react-input-mask'
 import classNames from 'classnames'
 
+import media from '../../utils/media'
+
 const FieldError = styled.div`
   padding-top: 1.5vw;
   font-size: 3.75vw;
   color: #F00;
-  @media (min-width: 576px) {
+  ${media.desktop`
     padding-top: 5px;
     font-size: 12px;
-  }
+  `}
 `
 
 const TextField = ({
@@ -122,7 +124,7 @@ const StyledTextField = styled(TextField)`
       border: 2px solid #FD6464;
     }
   }
-  @media (min-width: 576px) {
+  ${media.desktop`
     input {
       padding: 15px;
       font-size: 18px;
@@ -139,7 +141,7 @@ const StyledTextField = styled(TextField)`
       top: 15px;
       font-size: 18px;
     }
-  }
+  `}
   ${applyStyleModifiers(modifierConfig)};
 `
 

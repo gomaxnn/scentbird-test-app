@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { applyStyleModifiers } from 'styled-components-modifiers'
 
-import { sizes } from '../../utils/media'
+import media, { sizes } from '../../utils/media'
 
 const modifierConfig = {
   fillFull: () => `
@@ -57,10 +57,10 @@ const Wrapper = styled.div`
   width: 100%;
   margin-bottom: 4.6875vw;
   padding: 0 2.5vw;
-  @media (min-width: 576px) {
+  ${media.desktop`
     margin-bottom: 20px;
     padding: 0 10px;
-  }
+  `}
   ${applyStyleModifiers(modifierConfig)};
 `
 

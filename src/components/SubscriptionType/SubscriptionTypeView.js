@@ -7,6 +7,8 @@ import {
   Section,
 } from '../common'
 
+import media from '../../utils/media'
+
 import imageFemale from './female.svg'
 import imageMale from './male.svg'
 
@@ -17,9 +19,9 @@ const SectionBlock = styled(Section.Block)`
   max-width: 85vw;
   margin-left: auto;
   margin-right: auto;
-  @media (min-width: 576px) {
+  ${media.desktop`
     max-width: 480px;
-  }
+  `}
 `
 
 const FieldError = styled.div`
@@ -28,10 +30,10 @@ const FieldError = styled.div`
   text-align: center;
   font-size: 3.75vw;
   color: #F00;
-  @media (min-width: 576px) {
+  ${media.desktop`
     padding-top: 5px;
     font-size: 12px;
-  }
+  `}
 `
 
 const SubscriptionType = ({

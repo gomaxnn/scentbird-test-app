@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import classNames from 'classnames'
 
+import media from '../../utils/media'
+
 const CheckboxImage = ({
   children,
   className,
@@ -83,7 +85,7 @@ const StyledCheckboxImage = styled(CheckboxImage)`
       }
     }
   }
-  @media (min-width: 576px) {
+  ${media.desktop`
     .icon {
       margin-bottom: 20px;
       img {
@@ -93,7 +95,7 @@ const StyledCheckboxImage = styled(CheckboxImage)`
     .label {
       font-size: 24px;
     }
-  }
+  `}
 `
 
 export default StyledCheckboxImage

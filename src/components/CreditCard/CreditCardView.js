@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 import { Section } from '../common'
 
+import media from '../../utils/media'
+
 import SubTitle from './SubTitle'
 import CardNumberField from './CardNumber'
 import ExpMonthField from './ExpMonth'
@@ -16,12 +18,12 @@ const SectionBlock = styled(Section.Block)`
   border: 1px solid #e6e6e6;
   border-left: 0;
   border-right: 0;
-  @media (min-width: 576px) {
+  ${media.desktop`
     margin-left: 0;
     margin-right: 0;
     padding: 20px 10px 0;
     border: 1px solid #e6e6e6;
-  }
+  `}
 `
 
 const CreditCard = () => (

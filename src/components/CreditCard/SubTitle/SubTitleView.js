@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 import { Text } from '../../common'
 
+import media from '../../../utils/media'
+
 import encryption from './encryption.svg'
 
 const SubTitle = styled(Text)`
@@ -14,12 +16,12 @@ const SubTitle = styled(Text)`
   font-weight: 600;
   font-size: 3.75vw;
   color: #74bb2c;
-  @media (min-width: 576px) {
+  ${media.desktop`
     margin: 0 10px 20px;
     padding-left: 38px;
     line-height: 35px;
     font-size: 14px;
-  }
+  `}
 `
 
 export default SubTitle

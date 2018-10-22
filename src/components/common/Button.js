@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import media from '../../utils/media'
+
 const Button = ({
   children,
   className,
@@ -38,10 +40,10 @@ const StyledButton = styled(Button)`
   font-size: 5.625vw;
   color: #FFF;
   outline: none;
-  @media (min-width: 576px) {
+  ${media.desktop`
     padding: 15px;
     font-size: 18px;
-  }
+  `}
 `
 
 export default StyledButton

@@ -14,9 +14,9 @@ const Container = styled.div`
   padding: 0 6.25vw;
   ${media.desktop`
     width: 100%;
-    max-width: 1024px;
+    max-width: 1210px;
     margin: 0 auto 100px;
-    padding: 0;
+    padding: 0 20px;
   `}
 `
 
