@@ -16,6 +16,8 @@ import {
 
 import { Desktop, Mobile } from './utils/media'
 
+import GlobalStyle from './utils/globalStyle'
+
 const App = () => (
   <Layout>
     <Layout.Header>
@@ -44,6 +46,7 @@ const App = () => (
         <ShippingInfo />
       </Mobile>
     </Layout.ColumnRight>
+    <GlobalStyle />
   </Layout>
 )
 
